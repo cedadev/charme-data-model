@@ -1,0 +1,25 @@
+
+@prefix charme: <http://purl.org/voc/charme#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<hurricaneGeorges> rdf:type charme:HurricaneEvent ;
+    charme:eventName "Hurricane Georges, U.S." ;
+    charme:eventSummary "Category 2 hurricane strikes Puerto Rico, Virgin Islands, Florida Keys, ... 2-day rain totals in parts of Alabama and Florida" ;
+    rdfs:seeAlso "http://www.ncdc.noaa.gov/billions/events/n" ;
+    charme:country "http://www.geonames.org/6252001/united-states.html" ;
+    charme:namedRegion "http://www.geonames.org/3411923/north-atlantic-ocean.html" ;
+    charme:location <location1> ;
+    prov:startedAtTime "1998-09-20T00:00:01Z"^^xsd:dateTime ;
+    prov:endedAtTime "1998-09-29T00:00:01Z"^^xsd:dateTime .
+
+<location1> rdf:type geo:Feature ;
+     geo:hasGeometry <point1> .
+
+<point1> rdf:type sf:Point ;
+     geo:asWKT "Point(-83.4 34.3)^^<http://www.opengis.net/def/crs/OGC/1.3/CRS84>" .

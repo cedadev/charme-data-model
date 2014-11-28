@@ -1,0 +1,109 @@
+@prefix charme: <http://purl.org/voc/charme#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix oa: <http://www.w3.org/ns/oa#> .
+
+charme:DatasetSubset a owl:Class;
+	rdfs:subClassOf oa:SpecificResource;
+	rdfs:label "The OWL class used for CHARMe fine-grained commentary to describe a dataset subset"@en .
+
+charme:SubsetSelector a owl:Class;
+	rdfs:subClassOf oa:SubsetSelector;
+	rdfs:label "The OWL class for expressing the bounds of dataset subset used in CHARMe fine-grained commentary"@en .
+
+charme:hasVariable a owl:DatatypeProperty;
+	rdfs:label "Selected variable from a dataset subset used in CHARMe fine-grained commentary"@en ;
+	rdfs:domain charme:SubsetSelector ;
+	rdfs:range charme:Variable .
+
+charme:hasSpatialExtent a owl:DatatypeProperty;
+	rdfs:label "The geo-spatial extent of a CHARMe fine-grained commentary dataset subset"@en ;
+	rdfs:domain charme:SubsetSelector ;
+	rdfs:range charme:SpatialExtent .
+
+charme:hasVerticalExtent a owl:DatatypeProperty;
+	rdfs:label "The vertical extent of a CHARMe fine-grained commentary dataset subset"@en ;
+	rdfs:domain charme:SubsetSelector ;
+	rdfs:range charme:VerticalExtent .
+
+charme:hasTemporalExtent a owl:DatatypeProperty;
+	rdfs:label "The temporal extent of a CHARMe fine-grained commentary dataset subset"@en ;
+	rdfs:domain charme:SubsetSelector ;
+	rdfs:range charme:TemporalExtent .
+
+charme:Variable a owl:Class;
+	rdfs:label "The OWL class to express the variable name associated with a CHARMe fine-grained commentary dataset subset"@en .
+
+charme:hasInternalName a owl:DatatypeProperty;
+	rdfs:label "The name of the variable specific to the dataset selected for CHARMe fine-grained commentary"@en ;
+	rdfs:domain charme:Variable .
+
+charme:hasCfName a owl:DatatypeProperty;
+	rdfs:label "The CF (Climate Forecast) name of the variable specific to the dataset selected for CHARMe fine-grained commentary"@en ;
+	rdfs:domain charme:Variable .
+
+charme:SpatialExtent a owl:Class;
+	rdfs:subClassOf geo:Feature;
+	rdfs:label "The OWL class to express the horizontal spatial extent of a CHARMe fine-grained commentary dataset subset"@en .
+
+charme:hasNamedRegion a owl:DatatypeProperty;
+	rdfs:label "The name of the variable specific to the dataset selected for CHARMe fine-grained commentary"@en ;
+	rdfs:domain [ 	a owl:Class ;
+			owl:unionOf (charme:SpatialExtent charme:VerticalExtent) 
+		] .
+
+charme:VerticalExtent a owl:Class;
+	rdfs:subClassOf geo:Feature;
+	rdfs:label "The OWL class to express the vertical spatial extent of a CHARMe fine-grained commentary dataset subset"@en .
+
+charme:TemporalExtent a owl:Class;
+	rdfs:subClassOf geo:Feature;
+	rdfs:label "The OWL class to express the temporal spatial extent of a CHARMe fine-grained commentary dataset subset"@en .
+
+charme:hasCalendar a owl:DatatypeProperty;
+	rdfs:label "The calendar type for the temporal extent used to express a CHARMe fine-grained commentary dataset subset"@en ;
+	rdfs:domain charme:TemporalExtent .
+
+charme:hasTemporalStart a owl:DatatypeProperty;
+	rdfs:label "The start time for the temporal extent used to express a CHARMe fine-grained commentary dataset subset"@en ;
+	rdfs:domain charme:TemporalExtent ;
+	rdfs:range [ 	a owl:Class ;
+			owl:unionOf (xsd:dateTime xsd:String) 
+		] .
+
+charme:hasTemporalEnd a owl:DatatypeProperty;
+	rdfs:label "The end time for the temporal extent used to express a CHARMe fine-grained commentary dataset subset"@en ;
+	rdfs:domain charme:TemporalExtent ;
+	rdfs:range [ 	a owl:Class ;
+			owl:unionOf (xsd:dateTime xsd:String) 
+		] .
+
+charme:Calendars a skos:ConceptScheme ; 
+        skos:prefLabel "A SKOS Concept Scheme calendar types for the CHARMe project"@en ;
+        skos:definition "Calendar type (e.g. Gregorian) used in association with the temporal extent (TemporalExtent) to express subsets of datasets for fine-grained commentary"@en ;
+        dc:creator "Philip Kershaw" ;
+        dc:contributor "Philip Kershaw" ;
+        dc:created "2014-10-18" ;
+        dc:modified "2014-10-18" ;
+        owl:versionInfo "1" .
+
+charme:Calendar a owl:Class;
+        rdfs:label "The OWL class for all CHARMe Calendar types"@en .
+
+charme:Gregorian a skos:Concept, owl:Class ;
+	rdfs:subClassOf charme:Calendar ;
+        rdfs:label "The OWL class for Gregorian Calendar type in the CHARMe project"@en .
+        skos:inScheme charme:Calendars ;
+        skos:prefLabel "Gregorian calendar"@en ;
+        skos:broader charme:Calendar ;
+        skos:definition "Gregorian Calendar type used in association with the temporal extent (TemporalExtent) to express subsets of datasets for fine-grained commentary"@en ;
+        dc:created "2014-10-01" ;
+        dc:modified "2014-10-01" ;
+        owl:versionInfo "1" .
+

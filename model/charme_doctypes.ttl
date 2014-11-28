@@ -1,0 +1,66 @@
+@prefix charme: <http://charme.ac.uk/2012/charme#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix oa: <http://www.w3.org/ns/oa#> .
+@prefix fabio: <http://purl.org/spar/fabio#> .
+
+charme:doctypeScheme a skos:ConceptScheme .
+
+charme:DocType a rdf:type ;
+	skos:inScheme charme:doctypeScheme ;
+	skos:prefLabel "DocType"@en ;
+	skos:broader rdf:type ;
+	rdfs:domain fabio:Document ;
+	rdfs:range fabio:TechnicalReport ;
+	rdfs:comment "Defines the charme technical document type specifications"@en .
+
+charme:AlgorithmTheoreticalBasisDocument a charme:DocType ;
+	skos:inScheme charme:doctypeScheme ;
+	skos:prefLabel "Algorithm Theoretical Basis Document"@en ;
+	skol:Label "ATBD"@en ;
+	skos:broader fabio:TechnicalReport ;
+	rdfs:comment "" .
+
+charme:ProductUserManual a charme:DocType ;
+	skos:inScheme charme:doctypeScheme ;
+	skos:prefLabel "Product User Manual"@en ;
+	skol:Label "PUM"@en ;
+	skos:broader fabio:TechnicalReport ;
+	rdfs:comment "" .
+
+charme:ValidationReport a charme:DocType ;
+	skos:inScheme charme:doctypeScheme ;
+	skos:prefLabel "Validation Report"@en ;
+	skol:Label "VR"@en ;
+	skos:broader fabio:TechnicalReport ;
+	rdfs:comment "" .
+
+charme:OperationReport a charme:DocType ;
+	skos:inScheme charme:doctypeScheme ;
+	skos:prefLabel "Operation Report"@en ;
+	skol:Label "OpR"@en ;
+	skos:broader fabio:TechnicalReport ;
+	rdfs:comment "" .
+
+charme:ServiceMessage a charme:DocType ;
+	skos:inScheme charme:doctypeScheme ;
+	skos:prefLabel "Service Message"@en ;
+	skol:Label "SM"@en ;
+	skos:broader charme:OperationReport ;
+	rdfs:comment "" .
+
+charme:ProductChangeLog a charme:DocType ;
+	skos:inScheme charme:doctypeScheme ;
+	skos:prefLabel "Product Change Log"@en ;
+	skol:Label "PCL"@en ;
+	skos:broader charme:ServiceMessage  ;
+	rdfs:comment "" .
+
+charme:KnownProductDisruption a charme:DocType ;
+	skos:inScheme charme:doctypeScheme ;
+	skos:prefLabel "Known Product Disruption"@en ;
+	skol:Label "KPD"@en ;
+	skos:broader charme:ServiceMessage ;
+	rdfs:comment "" .
