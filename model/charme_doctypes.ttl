@@ -1,4 +1,4 @@
-@prefix charme: <http://charme.ac.uk/2012/charme#> .
+@prefix charme: <http://purl.org/voc/charme#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -6,61 +6,140 @@
 @prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix fabio: <http://purl.org/spar/fabio#> .
 
-charme:doctypeScheme a skos:ConceptScheme .
+charme:doctypeScheme a skos:ConceptScheme	
+	skos:prefLabel "A SKOS Concept Scheme of document types for the CHARMe project"@en ;
+	skos:definition "Document types are used to enforce a controlled vocabulary for CHARMe body and target elements and to facilitate search functions"@en ;
+	dc:creator "Frank Kratzenstein" ;
+	dc:contributor "Philip Kershaw" ;
+	dc:created "2014-02-03" ;
+	dc:modified "2014-11-28" ;
+	owl:versionInfo "1.1" .
 
-charme:DocType a rdf:type ;
-	skos:inScheme charme:doctypeScheme ;
-	skos:prefLabel "DocType"@en ;
-	skos:broader rdf:type ;
-	rdfs:domain fabio:Document ;
-	rdfs:range fabio:TechnicalReport ;
-	rdfs:comment "Defines the charme technical document type specifications"@en .
+charme:DocType a owl:Class ;
+	rdfs:label "The OWL class for the CHARMe technical document type specifications"@en .
 
-charme:AlgorithmTheoreticalBasisDocument a charme:DocType ;
+charme:AlgorithmTheoreticalBasisDocument a skos:Concept, owl:Class ;
 	skos:inScheme charme:doctypeScheme ;
 	skos:prefLabel "Algorithm Theoretical Basis Document"@en ;
-	skol:Label "ATBD"@en ;
+	skos:notation "ATBD"@en ;
 	skos:broader fabio:TechnicalReport ;
-	rdfs:comment "" .
+	skos:definition "" ;
+	dc:created "2014-02-03" ;
+	dc:modified "2014-11-28" ;
+	owl:versionInfo "1.1" .
 
-charme:ProductUserManual a charme:DocType ;
+charme:ProductUserManual a skos:Concept, owl:Class ;
 	skos:inScheme charme:doctypeScheme ;
 	skos:prefLabel "Product User Manual"@en ;
-	skol:Label "PUM"@en ;
+	skos:notation "PUM"@en ;
 	skos:broader fabio:TechnicalReport ;
-	rdfs:comment "" .
+	skos:definition "" ;
+	dc:created "2014-02-03" ;
+	dc:modified "2014-11-28" ;
+	owl:versionInfo "1.1" .
 
-charme:ValidationReport a charme:DocType ;
+charme:ValidationReport a skos:Concept, owl:Class ;
 	skos:inScheme charme:doctypeScheme ;
 	skos:prefLabel "Validation Report"@en ;
-	skol:Label "VR"@en ;
+	skos:notation "VR"@en ;:
 	skos:broader fabio:TechnicalReport ;
-	rdfs:comment "" .
+	skos:definition "" ;
+	dc:created "2014-02-03" ;
+	dc:modified "2014-11-28" ;
+	owl:versionInfo "1.1" .
 
-charme:OperationReport a charme:DocType ;
+charme:OperationReport a skos:Concept, owl:Class ;
 	skos:inScheme charme:doctypeScheme ;
 	skos:prefLabel "Operation Report"@en ;
-	skol:Label "OpR"@en ;
+	skos:notation "OpR"@en ;
 	skos:broader fabio:TechnicalReport ;
-	rdfs:comment "" .
+	skos:definition "" ;
+	dc:created "2014-02-03" ;
+	dc:modified "2014-11-28" ;
+	owl:versionInfo "1.1" .
 
-charme:ServiceMessage a charme:DocType ;
+charme:ServiceMessage a skos:Concept, owl:Class ;
 	skos:inScheme charme:doctypeScheme ;
 	skos:prefLabel "Service Message"@en ;
-	skol:Label "SM"@en ;
+	skos:notation "SM"@en ;
 	skos:broader charme:OperationReport ;
-	rdfs:comment "" .
+	skos:definition "" ;
+	dc:created "2014-02-03" ;
+	dc:modified "2014-11-28" ;
+	owl:versionInfo "1.1" .
 
-charme:ProductChangeLog a charme:DocType ;
+charme:ProductChangeLog a skos:Concept, owl:Class ;
 	skos:inScheme charme:doctypeScheme ;
 	skos:prefLabel "Product Change Log"@en ;
-	skol:Label "PCL"@en ;
+	skos:notation "PCL"@en ;
 	skos:broader charme:ServiceMessage  ;
-	rdfs:comment "" .
+	skos:definition "" ;
+	dc:created "2014-02-03" ;
+	dc:modified "2014-11-28" ;
+	owl:versionInfo "1.1" .
 
-charme:KnownProductDisruption a charme:DocType ;
+charme:KnownProductDisruption a skos:Concept, owl:Class ;
 	skos:inScheme charme:doctypeScheme ;
 	skos:prefLabel "Known Product Disruption"@en ;
-	skol:Label "KPD"@en ;
+	skos:notation "KPD"@en ;
 	skos:broader charme:ServiceMessage ;
-	rdfs:comment "" .
+	skos:definition "" ;
+	dc:created "2014-02-03" ;
+	dc:modified "2014-11-28" ;
+	owl:versionInfo "1.1" .
+
+# OWL relationships
+charme:AlgorithmTheoreticalBasisDocument rdfs:subClassOf charme:DocType ;
+	owl:disjointWith charme:ProductUserManual ;
+	owl:disjointWith charme:ValidationReport ;
+	owl:disjointWith charme:OperationReport ;
+	owl:disjointWith charme:ServiceMessage ;
+	owl:disjointWith charme:ProductChangeLog ;
+	owl:disjointWith charme:KnownProductDisruption .
+
+charme:ProductUserManual rdfs:subClassOf charme:DocType ;
+	owl:disjointWith charme:AlgorithmTheoreticalBasisDocument ;
+	owl:disjointWith charme:ValidationReport ;
+	owl:disjointWith charme:OperationReport ;
+	owl:disjointWith charme:ServiceMessage ;
+	owl:disjointWith charme:ProductChangeLog ;
+	owl:disjointWith charme:KnownProductDisruption .
+
+charme:ValidationReport rdfs:subClassOf charme:DocType ;
+	owl:disjointWith charme:AlgorithmTheoreticalBasisDocument ;
+	owl:disjointWith charme:ProductUserManual ;
+	owl:disjointWith charme:ServiceMessage ;
+	owl:disjointWith charme:ProductChangeLog ;
+	owl:disjointWith charme:KnownProductDisruption .
+
+charme:OperationReport rdfs:subClassOf charme:DocType ;
+	owl:disjointWith charme:AlgorithmTheoreticalBasisDocument ;
+	owl:disjointWith charme:ProductUserManual ;
+	owl:disjointWith charme:ValidationReport ;
+	owl:disjointWith charme:ServiceMessage ;
+	owl:disjointWith charme:ProductChangeLog ;
+	owl:disjointWith charme:KnownProductDisruption .
+
+charme:ServiceMessage rdfs:subClassOf charme:DocType ;
+	owl:disjointWith charme:AlgorithmTheoreticalBasisDocument ;
+	owl:disjointWith charme:ProductUserManual ;
+	owl:disjointWith charme:ValidationReport ;
+	owl:disjointWith charme:OperationReport ;
+	owl:disjointWith charme:ProductChangeLog ;
+	owl:disjointWith charme:KnownProductDisruption .
+
+charme:ProductChangeLog rdfs:subClassOf charme:DocType ;
+	owl:disjointWith charme:AlgorithmTheoreticalBasisDocument ;
+	owl:disjointWith charme:ProductUserManual ;
+	owl:disjointWith charme:ValidationReport ;
+	owl:disjointWith charme:OperationReport ;
+	owl:disjointWith charme:ServiceMessage ;
+	owl:disjointWith charme:KnownProductDisruption .
+
+charme:KnownProductDisruption rdfs:subClassOf charme:DocType ;
+	owl:disjointWith charme:AlgorithmTheoreticalBasisDocument ;
+	owl:disjointWith charme:ProductUserManual ;
+	owl:disjointWith charme:ValidationReport ;
+	owl:disjointWith charme:OperationReport ;
+	owl:disjointWith charme:ServiceMessage ;
+	owl:disjointWith charme:ProductChangeLog .

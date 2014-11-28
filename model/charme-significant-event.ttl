@@ -1,19 +1,61 @@
-@prefix charme: <http://charme.org#> .
+@prefix charme: <http://purl.org/voc/charme#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-charme:SignificantEventTypeScheme a skos:ConceptScheme .
+charme:SignificantEvents a skos:ConceptScheme ; 
+	skos:prefLabel "A SKOS Concept Scheme of Significant Events for the CHARMe project"@en ;
+	skos:definition "Significant events (SE) are any events that affect climate data. Categorized into categories (event_type) and sub-categories (event_subtype):"@en ;
+	dc:creator "Iryna Rozum" ;
+	dc:contributor "Philip Kershaw" ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:EventType a rdf:type ;
-	skos:inScheme charme:SignificantEventTypeScheme ;
-	skos:prefLabel "EventType"@en ;
-	skos:broader rdf:type ;
-	rdfs:comment "Generic significant event type"@en .
+charme:SignificantEvent a owl:Class;
+	rdfs:subClassOf prov:Activity;
+	rdfs:label "The OWL class of all CHARMe Significant Events"@en .
 
-charme:ClimateEvent a charme:EventType ;
-	skos:inScheme charme:SignificantEventTypeScheme ;
+charme:Location a owl:Class;
+	rdfs:subClassOf prov:Location;
+	rdfs:subClassOf geo:Feature;
+	rdfs:label "The OWL class for representing CHARMe Significant Event geographic bounds"@en .
+
+charme:country a owl:DatatypeProperty;
+	rdfs:label "Country associated with a CHARMe Significant Event"@en ;
+	owl:subPropertyOf prov:atLocation ;
+	rdfs:domain charme:SignificantEvent .
+
+charme:namedRegion a owl:DatatypeProperty;
+	rdfs:label "A named region of the world associated with a CHARMe Significant Event"@en ;
+	owl:subPropertyOf prov:atLocation ;
+	rdfs:domain charme:SignificantEvent .
+
+charme:location a owl:DatatypeProperty;
+	rdfs:label "The geographic location associated with a CHARMe Significant Event"@en ;
+	owl:subPropertyOf prov:atLocation ;
+	rdfs:domain charme:SignificantEvent ;
+	rdfs:range charme:Location .
+
+charme:eventName a owl:DatatypeProperty;
+	rdfs:label "A human-readable name of the Significant Event"@en ;
+	owl:subPropertyOf skos:prefLabel ;
+	rdfs:domain charme:SignificantEvent ;
+	rdfs:range xsd:String .
+
+charme:eventSummary a owl:DatatypeProperty;
+	rdfs:label "A plain-text summary of the Significant Event"@en ;
+	owl:subPropertyOf skos:note ;
+	rdfs:domain charme:SignificantEvent ;
+	rdfs:range xsd:String .
+
+charme:ClimateEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:notation "C"@en ;
 	skos:prefLabel "Climate Event"@en ;
 	skos:narrower charme:HurricaneEvent ;
@@ -22,74 +64,100 @@ charme:ClimateEvent a charme:EventType ;
 	skos:narrower charme:DroughtEvent ;
 	skos:narrower charme:StormEvent ;
 	skos:narrower charme:WildfiresEvent ;
-	rdfs:comment "Defines the charme technical document type specifications"@en .
+	skos:definition "Climate significant event type"@en ;
+	skos:topConceptOf charme:SignificantEvents ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:climateSubEventConceptScheme a skos:ConceptScheme .
-
-charme:HurricaneEvent a charme:EventType ;
-	skos:inScheme charme:climateSubEventConceptScheme ;
+charme:HurricaneEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:prefLabel "Hurricane event"@en ;
 	skos:broader charme:ClimateEvent ;
-	rdfs:comment "Hurricane significant event type, a sub-type of ClimateEvent"@en .
+	skos:definition "Hurricane significant event type, a sub-type of ClimateEvent"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:VolcanicEruptionEvent a charme:EventType ;
-	skos:inScheme charme:climateSubEventConceptScheme ;
+charme:VolcanicEruptionEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:prefLabel "Volcanic Eruption"@en ;
 	skos:broader charme:ClimateEvent ;
-	rdfs:comment "Volcanic eruption significant event type, a sub-type of ClimateEvent"@en .
+	skos:definition "Volcanic eruption significant event type, a sub-type of ClimateEvent"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:ElNinoEvent a charme:EventType ;
-        skos:inScheme charme:climateSubEventConceptScheme ;
-        skos:prefLabel "El Nino event"@en ;
-        skos:broader charme:ClimateEvent ;
-        rdfs:comment "El Nino significant event type, a sub-type of ClimateEvent"@en .
+charme:ElNinoEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
+	skos:prefLabel "El Nino event"@en ;
+	skos:broader charme:ClimateEvent ;
+	skos:definition "El Nino significant event type, a sub-type of ClimateEvent"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:DroughtEvent a charme:EventType ;
-        skos:inScheme charme:climateSubEventConceptScheme ;
-        skos:prefLabel "Drought event"@en ;
-        skos:broader charme:ClimateEvent ;
-        rdfs:comment "Drought significant event type, a sub-type of ClimateEvent"@en .
+charme:DroughtEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
+	skos:prefLabel "Drought event"@en ;
+	skos:broader charme:ClimateEvent ;
+	skos:definition "Drought significant event type, a sub-type of ClimateEvent"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:StormEvent a charme:EventType ;
-        skos:inScheme charme:climateSubEventConceptScheme ;
-        skos:prefLabel "Storm event"@en ;
-        skos:broader charme:ClimateEvent ;
-        rdfs:comment "Storm significant event type, a sub-type of ClimateEvent"@en .
+charme:StormEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
+	skos:prefLabel "Storm event"@en ;
+	skos:broader charme:ClimateEvent ;
+	skos:definition "Storm significant event type, a sub-type of ClimateEvent"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:WildfiresEvent a charme:EventType ;
-        skos:inScheme charme:climateSubEventConceptScheme ;
-        skos:prefLabel "Wildfires event"@en ;
-        skos:broader charme:ClimateEvent ;
-        rdfs:comment "Wildfires significant event type, a sub-type of ClimateEvent"@en .
+charme:WildfiresEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
+	skos:prefLabel "Wildfires event"@en ;
+	skos:broader charme:ClimateEvent ;
+	skos:definition "Wildfires significant event type, a sub-type of ClimateEvent"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:SoftwareAndSystemEventConceptScheme a skos:ConceptScheme .
-
-charme:SoftwareAndSystemEvent a charme:EventType ;
-	skos:inScheme charme:SoftwareAndSystemEventConceptScheme ;
+charme:SoftwareAndSystemEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:notation "S"@en ;
-	skos:prefLabel "Software/system event"@en ;
-	skos:broader charme:EventType ;
+	skos:prefLabel "Software or system event"@en ;
 	skos:narrower charme:IfsEvent ;
 	skos:narrower charme:SystemEvent ;
-	rdfs:comment "Software/system significant event type"@en .
+	skos:definition "Software/system significant event type"@en ;
+	skos:topConceptOf charme:SignificantEvents ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:IfsEvent a charme:EventType ;
-	skos:inScheme charme:SoftwareAndSystemEventConceptScheme ;
+charme:IfsEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:prefLabel "IFS event"@en ;
 	skos:broader charme:SoftwareAndSystemEvent ;
-	rdfs:comment "IFS significant event type, a sub-type of SoftwareAndSystemEvent"@en .
+	skos:definition "IFS significant event type, a sub-type of SoftwareAndSystemEvent"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:SystemEvent a charme:EventType ;
-	skos:inScheme charme:SoftwareAndSystemEventConceptScheme ;
+charme:SystemEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:prefLabel "System event"@en ;
 	skos:broader charme:SoftwareAndSystemEvent ;
-	rdfs:comment "System significant event type, a sub-type of SoftwareAndSystemEvent"@en .
-
+	skos:definition "System significant event type, a sub-type of SoftwareAndSystemEvent"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
 # Data / Observing systems events
-charme:DataAndObservingSystemEvents a charme:EventType ;
-	skos:inScheme charme:SignificantEventTypeScheme ;
-	skos:prefLabel "Data / Observing system events"@en ;
+charme:DataAndObservingSystemEvents a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
+	skos:prefLabel "Data or Observing system events"@en ;
 	skos:notation "D"@en ;
 	skos:narrower charme:SatelliteEvent ;
 	skos:narrower charme:DropsondeEvent ;
@@ -99,66 +167,204 @@ charme:DataAndObservingSystemEvents a charme:EventType ;
 	skos:narrower charme:LandStationEvent ;
 	skos:narrower charme:MobileEvent ;
 	skos:narrower charme:AlarmEvent ;
-	rdfs:comment "Data / observing system event type"@en .
+	skos:definition "Data / observing system event type"@en ;
+	skos:topConceptOf charme:SignificantEvents ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:DataAndObservingSystemEventsConceptScheme a skos:ConceptScheme .
-
-charme:SatelliteEvent a charme:EventType ;
-	skos:inScheme charme:DataAndObservingSystemEventsConceptScheme ;
-	skos:prefLabel "Data / Observing system events"@en ;
+charme:SatelliteEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
+	skos:prefLabel "Satellite system events"@en ;
 	skos:broader charme:DataAndObservingSystemEvents ;
-	rdfs:comment "Satellite event type, a sub-type of Data / observing system event type"@en .
+	skos:definition "Satellite event type, a sub-type of Data / observing system event type"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:DropsondeEvent a charme:EventType ;
-	skos:inScheme charme:DataAndObservingSystemEventsConceptScheme ;
+charme:DropsondeEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:prefLabel "Dropsonde event"@en ;
 	skos:broader charme:DataAndObservingSystemEvents ;
-	rdfs:comment "Dropsonde event type, a sub-type of Data / observing system event type"@en .
+	skos:definition "Dropsonde event type, a sub-type of Data / observing system event type"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:AircraftEvent a charme:EventType ;
-	skos:inScheme charme:DataAndObservingSystemEventsConceptScheme ;
+charme:AircraftEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:prefLabel "Aircraft event"@en ;
 	skos:broader charme:DataAndObservingSystemEvents ;
-	rdfs:comment "Aircraft event type, a sub-type of Data / observing system event type"@en .
+	skos:definition "Aircraft event type, a sub-type of Data / observing system event type"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:BuoyEvent a charme:EventType ;
-	skos:inScheme charme:DataAndObservingSystemEventsConceptScheme ;
+charme:BuoyEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:prefLabel "Buoy event"@en ;
 	skos:broader charme:DataAndObservingSystemEvents ;
-	rdfs:comment "Buoy event type, a sub-type of Data / observing system event type"@en .
+	skos:definition "Buoy event type, a sub-type of Data / observing system event type"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:ShipEvent a charme:EventType ;
-	skos:inScheme charme:DataAndObservingSystemEventsConceptScheme ;
+charme:ShipEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:prefLabel "Ship event"@en ;
 	skos:broader charme:DataAndObservingSystemEvents ;
-	rdfs:comment "Ship event type, a sub-type of Data / observing system event type"@en .
+	skos:definition "Ship event type, a sub-type of Data / observing system event type"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:LandStationEvent a charme:EventType ;
-	skos:inScheme charme:DataAndObservingSystemEventsConceptScheme ;
+charme:LandStationEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:prefLabel "Land station event"@en ;
 	skos:broader charme:DataAndObservingSystemEvents ;
-	rdfs:comment "Land station event type, a sub-type of Data / observing system event type"@en .
+	skos:definition "Land station event type, a sub-type of Data / observing system event type"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:MobileEvent a charme:EventType ;
-	skos:inScheme charme:DataAndObservingSystemEventsConceptScheme ;
+charme:MobileEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:prefLabel "Mobile event"@en ;
 	skos:broader charme:DataAndObservingSystemEvents ;
-	rdfs:comment "Mobile event type, a sub-type of Data / observing system event type"@en .
+	skos:definition "Mobile event type, a sub-type of Data / observing system event type"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-charme:AlarmEvent a charme:EventType ;
-	skos:inScheme charme:DataAndObservingSystemEventsConceptScheme ;
+charme:AlarmEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
 	skos:prefLabel "Alarm event"@en ;
 	skos:broader charme:DataAndObservingSystemEvents ;
-	rdfs:comment "Alarm event type, a sub-type of Data / observing system event type"@en .
-
+	skos:definition "Alarm event type, a sub-type of Data / observing system event type"@en ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
 # Operational Event
-charme:OperationalEvent a charme:EventType ;
-	skos:inScheme charme:SignificantEventTypeScheme ;
-	skos:prefLabel "Data / Observing system events"@en ;
+charme:OperationalEvent a skos:Concept, owl:Class ;
+	skos:inScheme charme:SignificantEvents ;
+	skos:prefLabel "Operational events"@en ;
 	skos:notation "O"@en ;
-	skos:broader charme:EventType ;
-	rdfs:comment "Operational event type"@en .
+	skos:definition "Operational event type"@en ;
+	skos:topConceptOf charme:SignificantEvents ;
+	dc:created "2014-10-01" ;
+	dc:modified "2014-10-01" ;
+	owl:versionInfo "1" .
 
-# - Operational event sub-scheme would go here -
-
+# OWL class hierarchy
+charme:ClimateEvent rdfs:subClassOf charme:SignificantEvent .
+charme:OperationalEvent rdfs:subClassOf charme:SignificantEvent .
+charme:DataAndObservingSystemEvents rdfs:subClassOf charme:SignificantEvent .
+charme:SoftwareAndSystemEvent rdfs:subClassOf charme:SignificantEvent .
+charme:HurricaneEvent rdfs:subClassOf charme:ClimateEvent ;
+	owl:disjointWith charme:VolcanicEruptionEvent ;
+	owl:disjointWith charme:ElNinoEvent ;
+	owl:disjointWith charme:DroughtEvent ;
+	owl:disjointWith charme:StormEvent ;
+	owl:disjointWith charme:WildfiresEvent .
+charme:VolcanicEruptionEvent rdfs:subClassOf charme:ClimateEvent ;
+	owl:disjointWith charme:HurricaneEvent ;
+	owl:disjointWith charme:ElNinoEvent ;
+	owl:disjointWith charme:DroughtEvent ;
+	owl:disjointWith charme:StormEvent ;
+	owl:disjointWith charme:WildfiresEvent .
+charme:ElNinoEvent rdfs:subClassOf charme:ClimateEvent ;
+	owl:disjointWith charme:HurricaneEvent ;
+	owl:disjointWith charme:VolcanicEruptionEvent ;
+	owl:disjointWith charme:DroughtEvent ;
+	owl:disjointWith charme:StormEvent ;
+	owl:disjointWith charme:WildfiresEvent .
+charme:DroughtEvent rdfs:subClassOf charme:ClimateEvent ;
+	owl:disjointWith charme:HurricaneEvent ;
+	owl:disjointWith charme:VolcanicEruptionEvent ;
+	owl:disjointWith charme:ElNinoEvent ;
+	owl:disjointWith charme:StormEvent ;
+	owl:disjointWith charme:WildfiresEvent .
+charme:StormEvent rdfs:subClassOf charme:ClimateEvent ;
+	owl:disjointWith charme:HurricaneEvent ;
+	owl:disjointWith charme:VolcanicEruptionEvent ;
+	owl:disjointWith charme:ElNinoEvent ;
+	owl:disjointWith charme:DroughtEvent ;
+	owl:disjointWith charme:WildfiresEvent .
+charme:WildfiresEvent rdfs:subClassOf charme:ClimateEvent ;
+	owl:disjointWith charme:HurricaneEvent ;
+	owl:disjointWith charme:VolcanicEruptionEvent ;
+	owl:disjointWith charme:ElNinoEvent ;
+	owl:disjointWith charme:DroughtEvent ;
+	owl:disjointWith charme:StormEvent .
+charme:IfsEvent rdfs:subClassOf charme:SoftwareAndSystemEvent ;
+	owl:disjointWith charme:SoftwareAndSystemEvent.
+charme:SystemEvent rdfs:subClassOf charme:SoftwareAndSystemEvent ;
+	owl:disjointWith charme:IfsEvent.
+charme:SatelliteEvent rdfs:subClassOf charme:DataAndObservingSystemEvents ;
+	owl:disjointWith charme:DropsondeEvent ;
+	owl:disjointWith charme:AircraftEvent ;
+	owl:disjointWith charme:BuoyEvent ;
+	owl:disjointWith charme:ShipEvent ;
+	owl:disjointWith charme:LandStationEvent ;
+	owl:disjointWith charme:MobileEvent ;
+	owl:disjointWith charme:AlarmEvent .
+charme:DropsondeEvent rdfs:subClassOf charme:DataAndObservingSystemEvents ;
+	owl:disjointWith charme:SatelliteEvent ;
+	owl:disjointWith charme:AircraftEvent ;
+	owl:disjointWith charme:BuoyEvent ;
+	owl:disjointWith charme:ShipEvent ;
+	owl:disjointWith charme:LandStationEvent ;
+	owl:disjointWith charme:MobileEvent;
+	owl:disjointWith charme:AlarmEvent .
+charme:AircraftEvent rdfs:subClassOf charme:DataAndObservingSystemEvents ;
+	owl:disjointWith charme:DropsondeEvent ;
+	owl:disjointWith charme:SatelliteEvent ;
+	owl:disjointWith charme:BuoyEvent ;
+	owl:disjointWith charme:ShipEvent ;
+	owl:disjointWith charme:LandStationEvent ;
+	owl:disjointWith charme:MobileEvent;
+	owl:disjointWith charme:AlarmEvent .
+charme:BuoyEvent rdfs:subClassOf charme:DataAndObservingSystemEvents ;
+	owl:disjointWith charme:DropsondeEvent ;
+	owl:disjointWith charme:SatelliteEvent ;
+	owl:disjointWith charme:AircraftEvent ;
+	owl:disjointWith charme:ShipEvent ;
+	owl:disjointWith charme:LandStationEvent ;
+	owl:disjointWith charme:MobileEvent;
+	owl:disjointWith charme:AlarmEvent .
+charme:ShipEvent rdfs:subClassOf charme:DataAndObservingSystemEvents ;
+	owl:disjointWith charme:DropsondeEvent ;
+	owl:disjointWith charme:SatelliteEvent ;
+	owl:disjointWith charme:AircraftEvent ;
+	owl:disjointWith charme:BuoyEvent ;
+	owl:disjointWith charme:LandStationEvent ;
+	owl:disjointWith charme:MobileEvent;
+	owl:disjointWith charme:AlarmEvent .
+charme:LandStationEvent rdfs:subClassOf charme:DataAndObservingSystemEvents ;
+	owl:disjointWith charme:DropsondeEvent ;
+	owl:disjointWith charme:SatelliteEvent ;
+	owl:disjointWith charme:AircraftEvent ;
+	owl:disjointWith charme:BuoyEvent ;
+	owl:disjointWith charme:ShipEvent ;
+	owl:disjointWith charme:MobileEvent;
+	owl:disjointWith charme:AlarmEvent .
+charme:MobileEvent rdfs:subClassOf charme:DataAndObservingSystemEvents ;
+	owl:disjointWith charme:DropsondeEvent ;
+	owl:disjointWith charme:SatelliteEvent ;
+	owl:disjointWith charme:AircraftEvent ;
+	owl:disjointWith charme:BuoyEvent ;
+	owl:disjointWith charme:ShipEvent ;
+	owl:disjointWith charme:LandStationEvent ;
+	owl:disjointWith charme:AlarmEvent .
+charme:AlarmEvent rdfs:subClassOf charme:DataAndObservingSystemEvents ;
+	owl:disjointWith charme:DropsondeEvent;
+	owl:disjointWith charme:SatelliteEvent ;
+	owl:disjointWith charme:AircraftEvent ;
+	owl:disjointWith charme:BuoyEvent ;
+	owl:disjointWith charme:ShipEvent ;
+	owl:disjointWith charme:LandStationEvent ;
+	owl:disjointWith charme:MobileEvent .
