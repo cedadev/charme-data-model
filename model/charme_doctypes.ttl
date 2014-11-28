@@ -23,7 +23,7 @@ charme:AlgorithmTheoreticalBasisDocument a skos:Concept, owl:Class ;
 	skos:prefLabel "Algorithm Theoretical Basis Document"@en ;
 	skos:notation "ATBD"@en ;
 	skos:broader fabio:TechnicalReport ;
-	skos:definition "" ;
+	skos:definition "SKOS concept for Algorithm Theoretical Basis Document used for classifying CHARMe annotation bodies and targets."@en ;
 	dc:created "2014-02-03" ;
 	dc:modified "2014-11-28" ;
 	owl:versionInfo "1.1" .
@@ -33,7 +33,7 @@ charme:ProductUserManual a skos:Concept, owl:Class ;
 	skos:prefLabel "Product User Manual"@en ;
 	skos:notation "PUM"@en ;
 	skos:broader fabio:TechnicalReport ;
-	skos:definition "" ;
+	skos:definition "SKOS concept for Product User Manual used for classifying CHARMe annotation bodies and targets."@en ;
 	dc:created "2014-02-03" ;
 	dc:modified "2014-11-28" ;
 	owl:versionInfo "1.1" .
@@ -43,7 +43,7 @@ charme:ValidationReport a skos:Concept, owl:Class ;
 	skos:prefLabel "Validation Report"@en ;
 	skos:notation "VR"@en ;:
 	skos:broader fabio:TechnicalReport ;
-	skos:definition "" ;
+	skos:definition "SKOS concept for Validation Report used for classifying CHARMe annotation bodies and targets."@en ;
 	dc:created "2014-02-03" ;
 	dc:modified "2014-11-28" ;
 	owl:versionInfo "1.1" .
@@ -53,7 +53,8 @@ charme:OperationReport a skos:Concept, owl:Class ;
 	skos:prefLabel "Operation Report"@en ;
 	skos:notation "OpR"@en ;
 	skos:broader fabio:TechnicalReport ;
-	skos:definition "" ;
+	skos:narrower charme:ServiceMessage ;
+	skos:definition "SKOS concept for Operation Report used for classifying CHARMe annotation bodies and targets."@en ;
 	dc:created "2014-02-03" ;
 	dc:modified "2014-11-28" ;
 	owl:versionInfo "1.1" .
@@ -63,7 +64,9 @@ charme:ServiceMessage a skos:Concept, owl:Class ;
 	skos:prefLabel "Service Message"@en ;
 	skos:notation "SM"@en ;
 	skos:broader charme:OperationReport ;
-	skos:definition "" ;
+	skos:narrower charme:ProductChangeLog ;
+	skos:narrower charme:KnownProductDisruption ;
+	skos:definition "SKOS concept for Service Message used for classifying CHARMe annotation bodies and targets."@en ;
 	dc:created "2014-02-03" ;
 	dc:modified "2014-11-28" ;
 	owl:versionInfo "1.1" .
@@ -73,7 +76,7 @@ charme:ProductChangeLog a skos:Concept, owl:Class ;
 	skos:prefLabel "Product Change Log"@en ;
 	skos:notation "PCL"@en ;
 	skos:broader charme:ServiceMessage  ;
-	skos:definition "" ;
+	skos:definition "SKOS concept for Product Change Log used for classifying CHARMe annotation bodies and targets."@en ;
 	dc:created "2014-02-03" ;
 	dc:modified "2014-11-28" ;
 	owl:versionInfo "1.1" .
@@ -83,7 +86,7 @@ charme:KnownProductDisruption a skos:Concept, owl:Class ;
 	skos:prefLabel "Known Product Disruption"@en ;
 	skos:notation "KPD"@en ;
 	skos:broader charme:ServiceMessage ;
-	skos:definition "" ;
+	skos:definition "SKOS concept for Known Product Disruption used for classifying CHARMe annotation bodies and targets."@en ;
 	dc:created "2014-02-03" ;
 	dc:modified "2014-11-28" ;
 	owl:versionInfo "1.1" .
