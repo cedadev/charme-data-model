@@ -4,7 +4,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix oa: <http://www.w3.org/ns/oa#> .
-@prefix fabio: <http://purl.org/spar/fabio#> .
+@prefix fabio: <http://purl.org/spar/fabio/> .
 
 charme:doctypeScheme a skos:ConceptScheme	
 	skos:prefLabel "A SKOS Concept Scheme of document types for the CHARMe project"@en ;
