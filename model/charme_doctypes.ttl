@@ -1,4 +1,5 @@
 @prefix charme: <http://purl.org/voc/charme#> .
+@prefix dc: <http://purl.org/dc/terms/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -6,7 +7,7 @@
 @prefix oa: <http://www.w3.org/ns/oa#> .
 @prefix fabio: <http://purl.org/spar/fabio/> .
 
-charme:doctypeScheme a skos:ConceptScheme	
+charme:doctypeScheme a skos:ConceptScheme ;
 	skos:prefLabel "A SKOS Concept Scheme of document types for the CHARMe project"@en ;
 	skos:definition "Document types are used to enforce a controlled vocabulary for CHARMe body and target elements and to facilitate search functions"@en ;
 	dc:creator "Frank Kratzenstein" ;
@@ -41,7 +42,7 @@ charme:ProductUserManual a skos:Concept, owl:Class ;
 charme:ValidationReport a skos:Concept, owl:Class ;
 	skos:inScheme charme:doctypeScheme ;
 	skos:prefLabel "Validation Report"@en ;
-	skos:notation "VR"@en ;:
+	skos:notation "VR"@en ;
 	skos:broader fabio:TechnicalReport ;
 	skos:definition "SKOS concept for Validation Report used for classifying CHARMe annotation bodies and targets."@en ;
 	dc:created "2014-02-03" ;
