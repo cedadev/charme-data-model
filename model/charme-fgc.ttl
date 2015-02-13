@@ -98,7 +98,7 @@ charme:Calendar a owl:Class;
 
 charme:Gregorian a skos:Concept, owl:Class ;
 	rdfs:subClassOf charme:Calendar ;
-        rdfs:label "The OWL class for Gregorian Calendar type in the CHARMe project"@en .
+        rdfs:label "The OWL class for Gregorian Calendar type in the CHARMe project"@en ;
         skos:inScheme charme:Calendars ;
         skos:prefLabel "Gregorian calendar"@en ;
         skos:broader charme:Calendar ;
